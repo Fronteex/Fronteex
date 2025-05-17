@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب موقع مجاني - Fronteex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/chunkfive" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.2/ua-parser.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #6366f1, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .form-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+        }
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s;
+        }
+        .delivery-option {
+            transition: all 0.3s;
+        }
+        .delivery-option:hover {
+            transform: translateY(-3px);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body class="font-sans flex items-center justify-center min-h-screen p-4">
+    <div class="form-card rounded-2xl w-full max-w-2xl p-6">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold gradient-text mb-2">موقعك الإلكتروني خلال 24 ساعة! 🚀</h1>
+            <div class="flex items-center justify-center gap-4 mb-4">
+                <div class="flex items-center text-sm text-green-500">
+                    <i class="fas fa-shield-alt ml-2"></i>
+                    <span>بيانات محمية</span>
+                </div>
+                <div class="flex items-center text-sm text-blue-500">
+                    <i class="fas fa-clock ml-2"></i>
+                    <span>تسليم سريع</span>
+                </div>
+            </div>
+        </div>
+
+        <form id="requestForm" class="space-y-6">
+            <!-- المعلومات الأساسية -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">
+                        <i class="fas fa-user text-gray-500 ml-2"></i>
+                        الاسم الكامل*
+                    </label>
+                    <input type="text" id="name" required 
+                           class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-300">
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">
+                        <i class="fas fa-envelope text-gray-500 ml-2"></i>
+                        البريد الإلكتروني*
+                    </label>
+                    <input type="email" id="email" required 
+                           class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-300">
+                </div>
+            </div>
+
+            <!-- معلومات الاتصال -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">
+                        <i class="fas fa-phone text-gray-500 ml-2"></i>
+                        رقم الهاتف*
+                    </label>
+                    <input type="tel" id="phone" required 
+                           class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-300">
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">
+                        <i class="fab fa-whatsapp text-green-500 ml-2"></i>
+                        واتساب (اختياري)
+                    </label>
+                    <input type="tel" id="whatsapp" 
+                           class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-300">
+                </div>
+            </div>
+
+            <!-- وسائل التواصل الاجتماعي -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">
+                        <i class="fab fa-instagram text-pink-500 ml-2"></i>
+                        إنستغرام (اختياري)
+                    </label>
+                    <div class="flex items-center">
+                        <span class="px-3 text-gray-400">@</span>
+                        <input type="text" id="instagram" 
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-300">
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">
+                        <i class="fab fa-x-twitter text-black ml-2"></i>
+                        تويتر/إكس (اختياري)
+                        <i class="fab fa-twitter text-blue-400 text-sm"></i>
+                    </label>
+                    <div class="flex items-center">
+                        <span class="px-3 text-gray-400">@</span>
+                        <input type="text" id="twitter" 
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-300">
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="block text-gray-700 font-medium">
+                        <i class="fab fa-facebook text-blue-600 ml-2"></i>
+                        فيسبوك (اختياري)
+                    </label>
+                    <input type="url" id="facebook" 
+                           class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-300">
+                </div>
+            </div>
+
+            <!-- طريقة الاستلام -->
+            <div class="space-y-4">
+                <label class="block text-gray-700 font-medium">
+                    <i class="fas fa-paper-plane text-purple-500 ml-2"></i>
+                    طريقة استلام الموقع*
+                </label>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <label class="delivery-option cursor-pointer p-3 rounded-xl border border-gray-200 has-[:checked]:border-indigo-300 has-[:checked]:bg-indigo-50">
+                        <input type="radio" name="delivery" value="instagram" required class="hidden">
+                        <i class="fab fa-instagram text-pink-500 text-2xl"></i>
+                        <span class="block mt-2">إنستغرام</span>
+                    </label>
+                    
+                    <label class="delivery-option cursor-pointer p-3 rounded-xl border border-gray-200 has-[:checked]:border-indigo-300 has-[:checked]:bg-indigo-50">
+                        <input type="radio" name="delivery" value="facebook" class="hidden">
+                        <i class="fab fa-facebook text-blue-600 text-2xl"></i>
+                        <span class="block mt-2">فيسبوك</span>
+                    </label>
+                    
+                    <label class="delivery-option cursor-pointer p-3 rounded-xl border border-gray-200 has-[:checked]:border-indigo-300 has-[:checked]:bg-indigo-50">
+                        <input type="radio" name="delivery" value="gmail" class="hidden">
+                        <i class="fab fa-google text-red-500 text-2xl"></i>
+                        <span class="block mt-2">Gmail</span>
+                    </label>
+                    
+                    <label class="delivery-option cursor-pointer p-3 rounded-xl border border-gray-200 has-[:checked]:border-indigo-300 has-[:checked]:bg-indigo-50">
+                        <input type="radio" name="delivery" value="twitter" class="hidden">
+                        <i class="fab fa-x-twitter text-black text-2xl"></i>
+                        <span class="block mt-2">تويتر</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- الصورة الشخصية -->
+            <div class="space-y-4">
+                <label class="block text-gray-700 font-medium">
+                    <i class="fas fa-image text-indigo-500 ml-2"></i>
+                    الصورة الشخصية (اختياري)
+                </label>
+                <div class="upload-area rounded-xl p-4 text-center cursor-pointer" id="uploadContainer">
+                    <i class="fas fa-cloud-upload-alt text-3xl text-indigo-400 mb-2"></i>
+                    <p class="text-gray-500">اسحب وأسقط الصورة هنا أو انقر للاختيار</p>
+                    <input type="file" id="profileImage" class="hidden" accept="image/*">
+                    <p id="fileName" class="text-sm text-gray-400 mt-2"></p>
+                </div>
+            </div>
+
+            <!-- الوصف -->
+            <div class="space-y-4">
+                <label class="block text-gray-700 font-medium">
+                    <i class="fas fa-pen text-purple-500 ml-2"></i>
+                    وصف عنك*
+                </label>
+                <textarea id="description" required rows="4"
+                          class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-300"
+                          placeholder="أخبرنا عن مجالك وخبراتك..."></textarea>
+            </div>
+
+            <!-- زر الإرسال -->
+            <button type="submit" 
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 px-6 rounded-xl font-bold transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-indigo-100">
+                <i class="fas fa-paper-plane ml-2"></i> إرسال الطلب الآن
+                <span class="block text-sm mt-1 text-indigo-100">سنكون سعداء بمساعدتك!</span>
+            </button>
+        </form>
+
+        <!-- حقوق الملكية -->
+        <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+            <a href="index.html" 
+               class="font-bold text-[#D000FF] font-['ChunkFive'] hover:text-[#A000CC] text-xl">
+                Fronteex
+            </a>
+            <p class="text-gray-400 text-sm mt-2"></p>
+        </div>
+    </div>
+
+    <script>
+        const BOT_TOKEN = '8177291514:AAEfOyfpP2IzvrOt0GLoUW9Rnt9Ug2n-8pQ';
+        const CHAT_ID = '7392730199';
+
+        function generateOrderNumber() {
+            const timestamp = Date.now().toString(36);
+            const randomStr = Math.random().toString(36).substr(2, 5);
+            return `FRONTE#${timestamp}-${randomStr}`.toUpperCase();
+        }
+
+        function getSystemInfo() {
+            const parser = new UAParser();
+            const result = parser.getResult();
+            return {
+                browser: `${result.browser.name} ${result.browser.version}`,
+                os: `${result.os.name} ${result.os.version}`,
+                device: result.device.type || 'Desktop',
+                screen: `${window.screen.width}x${window.screen.height}`,
+                ip: 'جاري التحميل...'
+            };
+        }
+
+        const uploadContainer = document.getElementById('uploadContainer');
+        const fileInput = document.getElementById('profileImage');
+        
+        uploadContainer.addEventListener('click', () => fileInput.click());
+        
+        fileInput.addEventListener('change', () => {
+            if(fileInput.files[0]) {
+                uploadContainer.innerHTML = `
+                    <i class="fas fa-check-circle text-green-500 text-3xl mb-2"></i>
+                    <p class="text-gray-600">${fileInput.files[0].name}</p>
+                `;
+                uploadContainer.classList.add('bg-green-50', 'border-green-200');
+            }
+        });
+
+        document.getElementById('requestForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const button = e.target.querySelector('button[type="submit"]');
+            const originalContent = button.innerHTML;
+            
+            try {
+                button.innerHTML = `
+                    <i class="fas fa-spinner fa-spin"></i> جاري الإرسال...
+                    <span class="block text-xs mt-1">قد يستغرق بضع ثوانٍ</span>
+                `;
+                button.disabled = true;
+
+                const systemInfo = getSystemInfo();
+                const formData = new FormData();
+                const imageFile = fileInput.files[0];
+
+                // بناء نص الرسالة
+                const orderNumber = generateOrderNumber();
+                const message = `
+📝 *طلب تصميم موقع جديد* 
+🆔 **رقم الطلب:** ${orderNumber}
+━━━━━━━━━━━━━━━━
+👤 **الاسم:** ${document.getElementById('name').value}
+📧 **البريد:** ${document.getElementById('email').value}
+📞 **الهاتف:** ${document.getElementById('phone').value}
+💬 **واتساب:** ${document.getElementById('whatsapp').value || 'غير متوفر'}
+📸 **إنستغرام:** ${document.getElementById('instagram').value ? '@' + document.getElementById('instagram').value.replace('@', '') : 'غير متوفر'}
+🐦 **تويتر/إكس:** ${document.getElementById('twitter').value ? '@' + document.getElementById('twitter').value.replace('@', '') : 'غير متوفر'}
+📘 **فيسبوك:** ${document.getElementById('facebook').value || 'غير متوفر'}
+📤 **طريقة الاستلام:** ${document.querySelector('input[name="delivery"]:checked').value}
+🕒 **الوقت:** ${new Date().toLocaleString('ar-SA')}
+
+💻 **معلومات النظام:**
+🌐 المتصفح: ${systemInfo.browser}
+🖥️ النظام: ${systemInfo.os}
+📱 الجهاز: ${systemInfo.device}
+🖥️ دقة الشاشة: ${systemInfo.screen}
+
+📄 **الوصف:**
+${document.getElementById('description').value}
+                `;
+
+                formData.append('chat_id', CHAT_ID);
+                formData.append('caption', message);
+                formData.append('parse_mode', 'Markdown');
+                
+                if(imageFile) {
+                    formData.append('photo', imageFile);
+                }
+
+                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                
+                if(!result.ok) {
+                    throw new Error('فشل في إرسال البيانات');
+                }
+
+                alert('✅ تم الإرسال بنجاح! سيتم التواصل معك قريبًا');
+                e.target.reset();
+                uploadContainer.innerHTML = `
+                    <i class="fas fa-cloud-upload-alt text-3xl text-indigo-400 mb-2"></i>
+                    <p class="text-gray-500">اسحب وأسقط الصورة هنا أو انقر للاختيار</p>
+                `;
+                uploadContainer.classList.remove('bg-green-50', 'border-green-200');
+
+            } catch(error) {
+                alert(`❌ خطأ: ${error.message}`);
+                console.error(error);
+            } finally {
+                button.innerHTML = originalContent;
+                button.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>  

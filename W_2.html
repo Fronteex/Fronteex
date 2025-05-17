@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبتي الإبداعية | أحمد المحتوى</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E1306C;
+            --secondary: #F56040;
+            --accent: #FFDC80;
+            --light: #f8f9fa;
+            --dark: #262626;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', Arial, sans-serif;
+        }
+
+        body {
+            background: #fafafa;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* تأثيرات جميلة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* التصميم العام */
+        .header {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 L0,0 Z"/></svg>');
+            background-size: cover;
+            background-position: bottom;
+            opacity: 0.5;
+        }
+
+        .profile {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .instagram-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .instagram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .bio {
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 3px;
+        }
+
+        /* بطاقات الكتب */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .book-cover {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .book-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .book-info {
+            padding: 1.5rem;
+        }
+
+        .book-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-title i {
+            color: var(--primary);
+        }
+
+        .book-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .book-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .download-btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            box-shadow: 0 5px 15px rgba(225, 48, 108, 0.3);
+        }
+
+        /* قسم المحتوى الحصري */
+        .highlight-box {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(225, 48, 108, 0.2);
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .highlight-box::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .highlight-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight-box p {
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+            line-height: 1.7;
+        }
+
+        .cta-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        /* صفحة تفاصيل الكتاب */
+        .book-detail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 1rem;
+        }
+
+        .book-detail.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .detail-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .detail-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .detail-close:hover {
+            transform: rotate(90deg);
+            background: var(--secondary);
+        }
+
+        .detail-header {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .detail-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        .detail-header-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+            color: white;
+            width: 100%;
+        }
+
+        .detail-body {
+            padding: 2rem;
+        }
+
+        .detail-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .detail-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+            flex-wrap: wrap;
+        }
+
+        .detail-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .detail-desc {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .detail-download {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(225, 48, 108, 0.3);
+        }
+
+        .detail-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(225, 48, 108, 0.4);
+        }
+
+        /* التذييل */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* التأثيرات عند التحميل */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 2rem 1rem;
+            }
+            
+            .bio {
+                padding: 1rem;
+            }
+            
+            .detail-body {
+                padding: 1.5rem;
+            }
+            
+            .detail-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="profile">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="صورة الملف الشخصي" class="profile-img">
+            <h1>أحمد المحتوى</h1>
+            <p>خبير في صناعة المحتوى وتطوير الذات</p>
+            <a href="https://instagram.com/username" class="instagram-btn" target="_blank">
+                <i class="fab fa-instagram"></i> تابعني على إنستجرام
+            </a>
+        </div>
+        
+        <div class="bio">
+            مرحباً بكم في مكتبتي الإبداعية حيث أشارك معكم كتبي وملفاتي التي أعدها خصيصاً لمتابعي على إنستجرام. هنا ستجدون كل محتواي المجاني والمميز.
+        </div>
+    </header>
+
+    <!-- Books Section -->
+    <section class="section">
+        <h2 class="section-title">كتبي ومؤلفاتي</h2>
+        <div class="books-grid">
+            <!-- Book 1 -->
+            <div class="book-card" onclick="showBookDetail('دليل صناعة المحتوى الاحترافي', 'book1.pdf', 'https://source.unsplash.com/random/800x1000/?book,design', 'كتاب شامل يشرح أساسيات صناعة المحتوى الجذاب على إنستجرام من التصوير إلى كتابة النصوص. يحتوي الكتاب على نصائح عملية وأمثلة حقيقية لتحسين محتواك وزيادة تفاعل متابعيك.', '250 صفحة', 'PDF 15MB', '4.8/5')">
+                <div class="book-cover" style="background-image: url('https://source.unsplash.com/random/600x800/?book,design')">
+                    <span class="book-badge">الأكثر تحميلاً</span>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title"><i class="fas fa-book"></i> دليل صناعة المحتوى الاحترافي</h3>
+                    <p class="book-desc">كتاب شامل يشرح أساسيات صناعة المحتوى الجذاب على إنستجرام من التصوير إلى كتابة النصوص</p>
+                    <div class="book-stats">
+                        <span><i class="fas fa-download"></i> 245 تحميل</span>
+                        <span><i class="fas fa-star"></i> 4.8/5</span>
+                    </div>
+                    <button class="download-btn" onclick="event.stopPropagation(); downloadBook('book1.pdf', 'دليل صناعة المحتوى الاحترافي')">
+                        <i class="fas fa-download"></i> تحميل الكتاب
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Book 2 -->
+            <div class="book-card" onclick="showBookDetail('أسرار النجاح على إنستجرام', 'book2.pdf', 'https://source.unsplash.com/random/800x1000/?book,marketing', 'دليل عملي لبناء علامة تجارية ناجحة على إنستجرام. يتضمن استراتيجيات زيادة المتابعين، تحسين معدلات التفاعل، وطرق تحقيق الدخل من المحتوى.', '180 صفحة', 'PDF 12MB', '4.6/5')">
+                <div class="book-cover" style="background-image: url('https://source.unsplash.com/random/600x800/?book,marketing')">
+                    <span class="book-badge">جديد</span>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title"><i class="fas fa-book"></i> أسرار النجاح على إنستجرام</h3>
+                    <p class="book-desc">تعلم كيف تبني علامة تجارية ناجحة على إنستجرام وتصل إلى آلاف المتابعين</p>
+                    <div class="book-stats">
+                        <span><i class="fas fa-download"></i> 178 تحميل</span>
+                        <span><i class="fas fa-star"></i> 4.6/5</span>
+                    </div>
+                    <button class="download-btn" onclick="event.stopPropagation(); downloadBook('book2.pdf', 'أسرار النجاح على إنستجرام')">
+                        <i class="fas fa-download"></i> تحميل الكتاب
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Book 3 -->
+            <div class="book-card" onclick="showBookDetail('التصوير بالموبايل للمبتدئين', 'book3.pdf', 'https://source.unsplash.com/random/800x1000/?book,photography', 'دليل مصور لالتقاط صور احترافية باستخدام هاتفك الذكي فقط. يشمل إعدادات الكاميرا، تقنيات الإضاءة، التكوين الفني، وتحرير الصور بتطبيقات مجانية.', '150 صفحة', 'PDF 10MB', '4.9/5')">
+                <div class="book-cover" style="background-image: url('https://source.unsplash.com/random/600x800/?book,photography')">
+                    <span class="book-badge">حصري</span>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title"><i class="fas fa-book"></i> التصوير بالموبايل للمبتدئين</h3>
+                    <p class="book-desc">دليل عملي لالتقاط صور احترافية باستخدام هاتفك الذكي فقط</p>
+                    <div class="book-stats">
+                        <span><i class="fas fa-download"></i> 312 تحميل</span>
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                    </div>
+                    <button class="download-btn" onclick="event.stopPropagation(); downloadBook('book3.pdf', 'التصوير بالموبايل للمبتدئين')">
+                        <i class="fas fa-download"></i> تحميل الكتاب
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusive Content Section -->
+    <section class="section">
+        <div class="highlight-box">
+            <h3>محتوى حصري لمتابعيني على إنستجرام</h3>
+            <p>احصل على كتب وملفات إضافية عند متابعتي على إنستجرام وإرسال رسالة بكلمة "مكتبتي"</p>
+            <button class="cta-btn" onclick="window.open('https://instagram.com/username', '_blank')">
+                <i class="fab fa-instagram"></i> انتقل إلى الإنستجرام
+            </button>
+        </div>
+    </section>
+
+    <!-- Instagram Posts Section -->
+    <section class="section">
+        <h2 class="section-title">أحدث منشوراتي على إنستجرام</h2>
+        <div class="books-grid">
+            <div class="book-card" onclick="window.open('https://instagram.com/username', '_blank')">
+                <div class="book-cover" style="background-image: url('https://source.unsplash.com/random/600x800/?instagram,post,1')">
+                    <span class="book-badge"><i class="fab fa-instagram"></i> منشور</span>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title"><i class="fab fa-instagram"></i> نصائح لزيادة التفاعل</h3>
+                    <p class="book-desc">أفضل الطرق لزيادة معدل التفاعل على منشورات إنستجرام الخاصة بك</p>
+                    <button class="download-btn">
+                        <i class="fas fa-eye"></i> مشاهدة المنشور
+                    </button>
+                </div>
+            </div>
+            
+            <div class="book-card" onclick="window.open('https://instagram.com/username', '_blank')">
+                <div class="book-cover" style="background-image: url('https://source.unsplash.com/random/600x800/?instagram,post,2')">
+                    <span class="book-badge"><i class="fab fa-instagram"></i> ريلز</span>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title"><i class="fab fa-instagram"></i> تصوير الريلز الاحترافي</h3>
+                    <p class="book-desc">خطوات تصوير ريلز جذاب بمعدات بسيطة</p>
+                    <button class="download-btn">
+                        <i class="fas fa-eye"></i> مشاهدة الريلز
+                    </button>
+                </div>
+            </div>
+            
+            <div class="book-card" onclick="window.open('https://instagram.com/username', '_blank')">
+                <div class="book-cover" style="background-image: url('https://source.unsplash.com/random/600x800/?instagram,post,3')">
+                    <span class="book-badge"><i class="fab fa-instagram"></i> ستوري</span>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title"><i class="fab fa-instagram"></i> قوالب ستوري جاهزة</h3>
+                    <p class="book-desc">مجموعة من القوالب المجانية للإنستجرام ستوري</p>
+                    <button class="download-btn">
+                        <i class="fas fa-eye"></i> مشاهدة القوالب
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة تفاصيل الكتاب -->
+    <div class="book-detail" id="bookDetail">
+        <div class="detail-content">
+            <div class="detail-close" onclick="hideBookDetail()">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="detail-header" id="detailHeader">
+                <div class="detail-header-content">
+                    <h2 id="detailTitle">عنوان الكتاب</h2>
+                </div>
+            </div>
+            <div class="detail-body">
+                <div class="detail-meta">
+                    <span><i class="fas fa-file"></i> <span id="detailFormat">PDF 15MB</span></span>
+                    <span><i class="fas fa-book-open"></i> <span id="detailPages">250 صفحة</span></span>
+                    <span><i class="fas fa-star"></i> <span id="detailRating">4.8/5</span></span>
+                </div>
+                <p class="detail-desc" id="detailDesc">وصف الكتاب</p>
+                <button class="detail-download" id="detailDownloadBtn">
+                    <i class="fas fa-download"></i> تحميل الكتاب الآن
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- شاشة التحميل -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3>مكتبتي الإبداعية</h3>
+        <p>كل المحتوى هنا من إعداد وتأليف أحمد المحتوى</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/username" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+        </div>
+        
+        <p> </p>
+    </footer>
+
+    <script>
+        // بيانات الكتب (يمكن استبدالها ببيانات حقيقية)
+        const books = {
+            'book1.pdf': {
+                title: 'دليل صناعة المحتوى الاحترافي',
+                cover: 'https://source.unsplash.com/random/800x1000/?book,design',
+                desc: 'كتاب شامل يشرح أساسيات صناعة المحتوى الجذاب على إنستجرام من التصوير إلى كتابة النصوص. يحتوي الكتاب على نصائح عملية وأمثلة حقيقية لتحسين محتواك وزيادة تفاعل متابعيك.',
+                pages: '250 صفحة',
+                format: 'PDF 15MB',
+                rating: '4.8/5'
+            },
+            'book2.pdf': {
+                title: 'أسرار النجاح على إنستجرام',
+                cover: 'https://source.unsplash.com/random/800x1000/?book,marketing',
+                desc: 'دليل عملي لبناء علامة تجارية ناجحة على إنستجرام. يتضمن استراتيجيات زيادة المتابعين، تحسين معدلات التفاعل، وطرق تحقيق الدخل من المحتوى.',
+                pages: '180 صفحة',
+                format: 'PDF 12MB',
+                rating: '4.6/5'
+            },
+            'book3.pdf': {
+                title: 'التصوير بالموبايل للمبتدئين',
+                cover: 'https://source.unsplash.com/random/800x1000/?book,photography',
+                desc: 'دليل مصور لالتقاط صور احترافية باستخدام هاتفك الذكي فقط. يشمل إعدادات الكاميرا، تقنيات الإضاءة، التكوين الفني، وتحرير الصور بتطبيقات مجانية.',
+                pages: '150 صفحة',
+                format: 'PDF 10MB',
+                rating: '4.9/5'
+            }
+        };
+
+        // عرض تفاصيل الكتاب
+        function showBookDetail(title, file, cover, desc, pages, format, rating) {
+            const detail = document.getElementById('bookDetail');
+            const detailHeader = document.getElementById('detailHeader');
+            const detailTitle = document.getElementById('detailTitle');
+            const detailDesc = document.getElementById('detailDesc');
+            const detailPages = document.getElementById('detailPages');
+            const detailFormat = document.getElementById('detailFormat');
+            const detailRating = document.getElementById('detailRating');
+            const downloadBtn = document.getElementById('detailDownloadBtn');
+            
+            detailHeader.style.backgroundImage = `url('${cover}')`;
+            detailTitle.textContent = title;
+            detailDesc.textContent = desc;
+            detailPages.textContent = pages;
+            detailFormat.textContent = format;
+            detailRating.textContent = rating;
+            
+            downloadBtn.onclick = function() {
+                downloadBook(file, title);
+            };
+            
+            detail.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // إخفاء تفاصيل الكتاب
+        function hideBookDetail() {
+            document.getElementById('bookDetail').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // تحميل الكتاب
+        function downloadBook(file, title) {
+            const loading = document.getElementById('loading');
+            loading.classList.add('active');
+            
+            // محاكاة عملية التحميل (في الواقع سيتم استبدال هذا برابط تحميل حقيقي)
+            setTimeout(() => {
+                // إنشاء ملف PDF وهمي للتحميل
+                const blob = new Blob([`هذا ملف وهمي لكتاب: ${title}. يمكنك استبدال هذا برابط تحميل حقيقي لملف PDF.`], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = file;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                loading.classList.remove('active');
+                
+                // تحديث عدد التحميلات
+                updateDownloadCount(file);
+                
+                alert(`تم تحميل الكتاب "${title}" بنجاح!`);
+            }, 2000);
+        }
+
+        // تحديث عداد التحميلات (محلياً)
+        function updateDownloadCount(file) {
+            const counts = JSON.parse(localStorage.getItem('downloadCounts') || '{}');
+            counts[file] = (counts[file] || 0) + 1;
+            localStorage.setItem('downloadCounts', JSON.stringify(counts));
+            
+            // يمكنك هنا إضافة كود لتحديث العداد في الواجهة إذا أردت
+        }
+
+        // إغلاق تفاصيل الكتاب عند الضغط على ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideBookDetail();
+            }
+        });
+    </script>
+</body>
+</html>

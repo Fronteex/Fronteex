@@ -1,0 +1,849 @@
+/* التصميم العام */
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #fafafa; /* لون الخلفية الرئيسي */
+    color: #262626; /* لون النص الرئيسي */
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    direction: rtl;
+}
+
+header {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); /* ألوان إنستغرام */
+    color: #fff; /* لون نص الهيدر */
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px; /* مسافة بين العناصر */
+}
+
+header .brand img {
+    height: 50px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav {
+    display: flex;
+    gap: 20px; /* مسافة بين روابط القائمة */
+}
+
+nav a {
+    color: #fff; /* لون روابط الهيدر */
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    color: #fcb045; /* لون روابط الهيدر عند التمرير */
+    transform: translateY(-5px);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px);
+    color: #fcb045;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+main section {
+    padding: 60px 0;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #833ab4; /* لون العناوين */
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #262626; /* لون النص */
+}
+
+button {
+    background-color: #833ab4; /* لون خلفية الأزرار */
+    color: #fff; /* لون نص الأزرار */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #fd1d1d; /* لون خلفية الأزرار عند التمرير */
+    transform: scale(1.05);
+}
+
+/* تصميم بطاقات الإحصائيات */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: #fff; /* لون خلفية البطاقات */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+}
+
+.stat-card i {
+    font-size: 2.5rem;
+    color: #833ab4; /* لون الأيقونات */
+    margin-bottom: 15px;
+}
+
+.stat-card h3 {
+    font-size: 1.5rem;
+    color: #262626; /* لون عناوين البطاقات */
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 1rem;
+    color: #262626; /* لون نص البطاقات */
+}
+
+/* تصميم معرض الصور */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* تصميم بطاقات الخدمات */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background-color: #fff; /* لون خلفية البطاقات */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: #833ab4; /* لون الأيقونات */
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    color: #262626; /* لون عناوين البطاقات */
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: #262626; /* لون نص البطاقات */
+}
+
+/* تصميم النماذج */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #262626; /* لون تسميات النموذج */
+}
+
+form input, form textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #833ab4; /* لون حدود الحقول */
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #fd1d1d; /* لون حدود الحقول عند التركيز */
+}
+
+form button {
+    background-color: #833ab4; /* لون خلفية زر الإرسال */
+    color: #fff; /* لون نص زر الإرسال */
+    border: none;
+    padding: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+form button:hover {
+    background-color: #fd1d1d; /* لون خلفية زر الإرسال عند التمرير */
+    transform: scale(1.05);
+}
+
+footer {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); /* ألوان إنستغرام */
+    color: #fff; /* لون نص الفوتر */
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* استعلامات الوسائط للتجاوب */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* تصميم قسم تفاصيل الكورس والاستشارة */
+#course-details, #consultation-details {
+    padding: 60px 0;
+}
+
+.course-content, .consultation-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.course-image img, .consultation-image img {
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-info, .consultation-info {
+    flex: 1;
+    text-align: right;
+}
+
+.course-info ul, .consultation-info ul {
+    list-style-type: disc;
+    margin: 20px 0;
+    padding-right: 20px;
+}
+
+.course-info ul li, .consultation-info ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #262626;
+}
+
+.course-info p, .consultation-info p {
+    font-size: 1.2rem;
+    color: #262626;
+    margin-top: 20px;
+}
+
+.course-info button, .consultation-info button {
+    background-color: #833ab4;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.course-info button:hover, .consultation-info button:hover {
+    background-color: #fd1d1d;
+    transform: scale(1.05);
+}
+
+/* استعلامات الوسائط للتجاوب */
+@media (max-width: 768px) {
+    .course-/* التصميم العام */
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #fafafa; /* لون الخلفية الرئيسي */
+    color: #262626; /* لون النص الرئيسي */
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    direction: rtl;
+}
+
+header {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); /* ألوان إنستغرام */
+    color: #fff; /* لون نص الهيدر */
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px; /* مسافة بين العناصر */
+}
+
+header .brand img {
+    height: 50px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav {
+    display: flex;
+    gap: 20px; /* مسافة بين روابط القائمة */
+}
+
+nav a {
+    color: #fff; /* لون روابط الهيدر */
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    color: #fcb045; /* لون روابط الهيدر عند التمرير */
+    transform: translateY(-5px);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px);
+    color: #fcb045;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+main section {
+    padding: 60px 0;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #833ab4; /* لون العناوين */
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #262626; /* لون النص */
+}
+
+button {
+    background-color: #833ab4; /* لون خلفية الأزرار */
+    color: #fff; /* لون نص الأزرار */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #fd1d1d; /* لون خلفية الأزرار عند التمرير */
+    transform: scale(1.05);
+}
+
+/* تصميم بطاقات الإحصائيات */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: #fff; /* لون خلفية البطاقات */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+}
+
+.stat-card i {
+    font-size: 2.5rem;
+    color: #833ab4; /* لون الأيقونات */
+    margin-bottom: 15px;
+}
+
+.stat-card h3 {
+    font-size: 1.5rem;
+    color: #262626; /* لون عناوين البطاقات */
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 1rem;
+    color: #262626; /* لون نص البطاقات */
+}
+
+/* تصميم معرض الصور */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* تصميم بطاقات الخدمات */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background-color: #fff; /* لون خلفية البطاقات */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: #833ab4; /* لون الأيقونات */
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    color: #262626; /* لون عناوين البطاقات */
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: #262626; /* لون نص البطاقات */
+}
+
+/* تصميم النماذج */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #262626; /* لون تسميات النموذج */
+}
+
+form input, form textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #833ab4; /* لون حدود الحقول */
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #fd1d1d; /* لون حدود الحقول عند التركيز */
+}
+
+form button {
+    background-color: #833ab4; /* لون خلفية زر الإرسال */
+    color: #fff; /* لون نص زر الإرسال */
+    border: none;
+    padding: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+form button:hover {
+    background-color: #fd1d1d; /* لون خلفية زر الإرسال عند التمرير */
+    transform: scale(1.05);
+}
+
+footer {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); /* ألوان إنستغرام */
+    color: #fff; /* لون نص الفوتر */
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* استعلامات الوسائط للتجاوب */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* تصميم قسم تفاصيل الكورس والاستشارة */
+#course-details, #consultation-details {
+    padding: 60px 0;
+}
+
+.course-content, .consultation-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.course-image img, .consultation-image img {
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-info, .consultation-info {
+    flex: 1;
+    text-align: right;
+}
+
+.course-info ul, .consultation-info ul {
+    list-style-type: disc;
+    margin: 20px 0;
+    padding-right: 20px;
+}
+
+.course-info ul li, .consultation-info ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #262626;
+}
+
+.course-info p, .consultation-info p {
+    font-size: 1.2rem;
+    color: #262626;
+    margin-top: 20px;
+}
+
+.course-info button, .consultation-info button {
+    background-color: #833ab4;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.course-info button:hover, .consultation-info button:hover {
+    background-color: #fd1d1d;
+    transform: scale(1.05);
+}
+
+/* استعلامات الوسائط للتجاوب */
+@media (max-width: 768px) {
+    .course-content, .consultation-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .course-info, .consultation-info {
+        text-align: center;
+    }
+
+    .course-info ul, .consultation-info ul {
+        padding-right: 0;
+    }
+}
+.consultation-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .course-info, .consultation-info {
+        text-align: center;
+    }
+
+    .course-info ul, .consultation-info ul {
+        padding-right: 0;
+    }
+}
+
+
+
+
+

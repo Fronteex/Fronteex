@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | خبير تسويق إلكتروني</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'El Messiri', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #0a0a0a, #3a4452);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 8%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: #00eeff;
+            transition: 0.5s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h3 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #00eeff;
+        }
+
+        .hero-content p {
+            margin: 20px 0 40px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid #00eeff;
+            border-radius: 50%;
+            font-size: 24px;
+            color: #00eeff;
+            text-decoration: none;
+            transition: 0.5s;
+        }
+
+        .social-icons a:hover {
+            background: #00eeff;
+            color: #081b29;
+            transform: translateY(-5px);
+        }
+
+        .profile-img {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            border: 8px solid #00eeff;
+            box-shadow: 0 0 50px #00eeff;
+            animation: float 4s ease-in-out infinite;
+            margin-top: 50px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        section {
+            padding: 100px 8%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s;
+        }
+
+        .section-title {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: #00eeff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.5s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 238, 255, 0.1);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: #00eeff;
+            animation: skillLine 3s ease-in-out infinite;
+        }
+
+        .skill-progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #00eeff;
+            width: 0;
+            transition: 1s;
+        }
+
+        @keyframes skillLine {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: rgba(0, 238, 255, 0.9);
+            transition: 0.5s;
+            text-align: center;
+        }
+
+        .demo-btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background: transparent;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: 0.5s;
+            font-weight: 600;
+        }
+
+        .demo-btn:hover {
+            background: #fff;
+            color: #081b29;
+            transform: translateY(-3px);
+        }
+
+        .project-card:hover .project-overlay {
+            bottom: 0;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .award-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: 0.5s;
+        }
+
+        .award-card i {
+            font-size: 50px;
+            color: #00eeff;
+            margin-bottom: 20px;
+        }
+
+        .award-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 238, 255, 0.1);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: transparent;
+            border: 2px solid #00eeff;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 238, 255, 0.3);
+            outline: none;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .info-box {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-box i {
+            font-size: 40px;
+            color: #00eeff;
+            margin-bottom: 15px;
+            transition: 0.5s;
+        }
+
+        button {
+            padding: 15px 40px;
+            background: #00eeff;
+            border: none;
+            border-radius: 30px;
+            color: #081b29;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.5s;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 238, 255, 0.4);
+        }
+
+        .social-footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .social-footer .social-icons {
+            gap: 30px;
+        }
+
+        @media (max-width: 1200px) {
+            .profile-img {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                padding-top: 150px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content h3 {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content h3 {
+                font-size: 24px;
+            }
+
+            .profile-img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 50px;
+            }
+
+            .social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+
+            .demo-btn {
+                padding: 10px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">خبير تسويق</a>
+        <div class="nav-links">
+            <a href="#about">معلومات عني</a>
+            <a href="#services">الخدمات</a>
+            <a href="#skills">المهارات</a>
+            <a href="#projects">المشاريع</a>
+            <a href="#awards">الجوائز</a>
+            <a href="#contact">تواصل معي</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h3>خبير تسويق إلكتروني</h3>
+            <h1>الاسم الخاص بك</h1>
+            <p>مختص في استراتيجيات التسويق الرقمي وإدارة الحملات الإعلانية وإنشاء محتوى جذاب لإنستجرام</p>
+            <div class="social-icons">
+                <!-- اختر الأيقونات التي تريدها واحذف البقية -->
+                <a href="#" title="إنستجرام"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="تويتر"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="لينكدإن"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" title="يوتيوب"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="تيك توك"><i class="fab fa-tiktok"></i></a>
+                <a href="#" title="سناب شات"><i class="fab fa-snapchat-ghost"></i></a>
+            </div>
+        </div>
+        <img src="Viveak Bhardwaj(JPG).jpg" class="profile-img" alt="صورة الملف الشخصي">
+    </section>
+
+    <section id="about" class="about">
+        <h2 class="section-title">معلومات عني</h2>
+        <p>أنا خبير تسويق إلكتروني مع أكثر من 5 سنوات خبرة في إدارة الحملات الإعلانية على منصات التواصل الاجتماعي وتطوير استراتيجيات المحتوى الفعالة التي تزيد من التفاعل وتحقق النتائج المرجوة. أساعد الشركات والعلامات التجارية على زيادة وجودها الرقمي وتحقيق أهدافها التسويقية.</p>
+    </section>
+
+    <section id="services" class="services">
+        <h2 class="section-title">الخدمات</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>إدارة الحملات الإعلانية</h3>
+                <p>إدارة احترافية لحملات فيسبوك وإنستجرام أدز لتحقيق أفضل عائد على الاستثمار مع تحليل أداء دقيق</p>
+            </div>
+            <div class="service-card">
+                <h3>صناعة المحتوى</h3>
+                <p>تصميم محتوى مرئي جذاب ومتناسق لإنستجرام مع استراتيجية نشر فعالة تزيد من التفاعل والمتابعين</p>
+            </div>
+            <div class="service-card">
+                <h3>استشارات تسويقية</h3>
+                <p>تقديم حلول تسويقية متكاملة تساعد في تطوير استراتيجيات النمو للعلامات التجارية</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2 class="section-title">المهارات</h2>
+        <div class="skills-container">
+            <div class="skill-item">
+                <h3>تسويق السوشيال ميديا</h3>
+                <div class="skill-progress">
+                    <div class="progress-bar" style="width: 95%"></div>
+                </div>
+                <span>95%</span>
+            </div>
+            <div class="skill-item">
+                <h3>تحليل البيانات</h3>
+                <div class="skill-progress">
+                    <div class="progress-bar" style="width: 90%"></div>
+                </div>
+                <span>90%</span>
+            </div>
+            <div class="skill-item">
+                <h3>تصميم المحتوى</h3>
+                <div class="skill-progress">
+                    <div class="progress-bar" style="width: 85%"></div>
+                </div>
+                <span>85%</span>
+            </div>
+            <div class="skill-item">
+                <h3>إدارة المشاريع</h3>
+                <div class="skill-progress">
+                    <div class="progress-bar" style="width: 80%"></div>
+                </div>
+                <span>80%</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2 class="section-title">المشاريع</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="Viveak Bhardwaj(JPG).jpg" alt="حملة تسويقية">
+                <div class="project-overlay">
+                    <h3>حملة تسويقية لمطعم</h3>
+                    <p>زيادة المبيعات بنسبة 300% خلال 3 أشهر عبر استراتيجية إعلانية مدروسة</p>
+                    <a href="#" class="demo-btn">عرض التفاصيل</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="Viveak Bhardwaj(JPG).jpg" alt="إطلاق علامة تجارية">
+                <div class="project-overlay">
+                    <h3>إطلاق علامة تجارية</h3>
+                    <p>بناء هوية متكاملة وزيادة المتابعين إلى 50K خلال 6 أشهر</p>
+                    <a href="#" class="demo-btn">عرض التفاصيل</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="Viveak Bhardwaj(JPG).jpg" alt="حملة توعوية">
+                <div class="project-overlay">
+                    <h3>حملة توعوية</h3>
+                    <p>وصول لأكثر من مليون شخص عبر منصات التواصل الاجتماعي</p>
+                    <a href="#" class="demo-btn">عرض التفاصيل</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards" class="awards">
+        <h2 class="section-title">الجوائز</h2>
+        <div class="awards-grid">
+            <div class="award-card">
+                <i class="fas fa-trophy"></i>
+                <h3>أفضل استراتيجية تسويقية</h3>
+                <p>جوائز التسويق العربي 2023</p>
+            </div>
+            <div class="award-card">
+                <i class="fas fa-award"></i>
+                <h3>المركز الأول في صناعة المحتوى</h3>
+                <p>مسابقة المحتوى الرقمي 2022</p>
+            </div>
+            <div class="award-card">
+                <i class="fas fa-medal"></i>
+                <h3>جائزة الإبداع الرقمي</h3>
+                <p>مؤتمر التسويق الإلكتروني 2021</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">تواصل معي</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>العنوان</h3>
+                    <p>الرياض، المملكة العربية السعودية</p>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-phone"></i>
+                    <h3>الهاتف</h3>
+                    <p>+966 500 000 000</p>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-envelope"></i>
+                    <h3>البريد الإلكتروني</h3>
+                    <p>contact@example.com</p>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-clock"></i>
+                    <h3>أوقات العمل</h3>
+                    <p>الأحد - الخميس: 9 ص - 5 م</p>
+                </div>
+            </div>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="الاسم الكامل" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="الموضوع">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="الرسالة" required></textarea>
+                </div>
+                <button type="submit">إرسال الرسالة <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="social-footer">
+        <div class="social-icons">
+            <a href="#" title="إنستجرام"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="تيك توك"><i class="fab fa-tiktok"></i></a>
+            <a href="#" title="يوتيوب"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="سناب شات"><i class="fab fa-snapchat-ghost"></i></a>
+        </div>
+        <p style="margin-top: 30px;"></p>
+    </footer>
+
+
+<script>
+  // تأثيرات التمرير السلس للروابط
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  // تأثيرات الظهور التدريجي
+  window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('section');
+    const windowHeight = window.innerHeight;
+
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if (sectionTop < windowHeight - 100) {
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      }
+    });
+  });
+
+  // تغيير لون شريط التنقل
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    navbar.style.background = window.scrollY > 50 
+      ? 'rgba(0, 0, 0, 0.9)' 
+      : 'rgba(0, 0, 0, 0.8)';
+  });
+
+  // تأثير أشرطة المهارات
+  const animateSkills = () => {
+    document.querySelectorAll('.skill-item').forEach(item => {
+      const progress = item.querySelector('.progress-bar');
+      const percent = parseInt(item.querySelector('span').textContent);
+      progress.style.width = '0';
+      setTimeout(() => {
+        progress.style.width = `${percent}%`;
+      }, 500);
+    });
+  };
+
+  // تفعيل تأثير المهارات عند التمرير
+  window.addEventListener('scroll', () => {
+    const skillsSection = document.querySelector('.skills');
+    if (skillsSection) {
+      const sectionTop = skillsSection.getBoundingClientRect().top;
+      if (sectionTop < window.innerHeight - 100) {
+        animateSkills();
+      }
+    }
+  });
+
+  // تأثير تحميل الصور
+  document.querySelectorAll('img').forEach(img => {
+    img.style.opacity = '0';
+    img.style.transform = 'translateY(50px)';
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          img.style.opacity = '1';
+          img.style.transform = 'translateY(0)';
+          img.style.transition = '1s';
+        }
+      });
+    });
+    observer.observe(img);
+  });
+
+  // تأثيرات النموذج
+  document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+    input.addEventListener('focus', () => {
+      input.style.borderColor = '#00eeff';
+      input.style.boxShadow = '0 0 15px rgba(0, 238, 255, 0.3)';
+    });
+    
+    input.addEventListener('blur', () => {
+      input.style.borderColor = '#00eeff';
+      input.style.boxShadow = 'none';
+    });
+  });
+
+  // إرسال النموذج إلى بريدك الإلكتروني
+  document.querySelector('.contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // استبدل هذا البريد ببريدك الشخصي
+    const YOUR_EMAIL = "your-email@example.com";
+    
+    const formData = {
+      name: this.querySelector('[name="name"]').value,
+      email: this.querySelector('[name="email"]').value,
+      subject: this.querySelector('[name="subject"]').value,
+      message: this.querySelector('[name="message"]').value
+    };
+
+    // إرسال البيانات
+    fetch(`https://formsubmit.co/ajax/${YOUR_EMAIL}`, {
+      method: "POST",
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert("تم إرسال رسالتك بنجاح!");
+      this.reset();
+    })
+    .catch(error => {
+      alert("حدث خطأ، يرجى المحاولة مرة أخرى لاحقاً");
+    });
+  });
+
+  // تأثيرات الأيقونات
+  document.querySelectorAll('.info-box i').forEach(icon => {
+    icon.addEventListener('mouseover', () => {
+      icon.style.transform = 'rotate(360deg) scale(1.2)';
+    });
+    
+    icon.addEventListener('mouseout', () => {
+      icon.style.transform = 'rotate(0) scale(1)';
+    });
+  });
+
+  // تأثيرات بطاقات المشاريع
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.querySelector('img').style.transform = 'scale(1.1)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.querySelector('img').style.transform = 'scale(1)';
+    });
+  });
+</script> 
+
+
+
+</body>
+</html> 

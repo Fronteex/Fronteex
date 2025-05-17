@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة صانع المحتوى</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"IBM Plex Sans Arabic"', 'sans-serif'],
+                        elegant: ['"Playfair Display"', 'serif']
+                    },
+                    colors: {
+                        insta: '#E1306C',
+                        second: '#F56040',
+                        dark: '#121212',
+                        light: '#F8F8F8'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #F8F8F8;
+            color: #121212;
+            min-height: 100vh;
+        }
+        
+        .insta-gradient {
+            background: linear-gradient(45deg, #E1306C, #F56040);
+        }
+        
+        .content-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- شريط التنقل -->
+    <nav class="py-5 px-6 absolute w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-elegant text-instagram">إسمك</div>
+            <a href="#contact" class="text-dark hover:text-instagram transition-colors">
+                تواصل معي
+            </a>
+        </div>
+    </nav>
+
+    <!-- قسم الملف الشخصي -->
+    <section class="min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-6 py-10 text-center">
+            <!-- الصورة الشخصية -->
+            <div class="mx-auto mb-8 w-36 h-36 rounded-full overflow-hidden border-4 border-white shadow-lg insta-gradient p-1">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" 
+                     alt="صورة الملف الشخصي" 
+                     class="w-full h-full object-cover rounded-full">
+            </div>
+            
+            <!-- المعلومات -->
+            <h1 class="text-3xl md:text-4xl font-elegant font-bold mb-4">مرحباً، أنا <span class="insta-gradient bg-clip-text text-transparent">إسمك</span></h1>
+            <p class="text-lg text-gray-600 mb-6">
+                صانع محتوى على إنستغرام متخصص في [تخصصك]
+            </p>
+            
+            <!-- الإحصائيات -->
+            <div class="flex justify-center space-x-6 space-x-reverse mb-10 max-w-md mx-auto">
+                <div class="text-center">
+                    <div class="text-2xl font-bold insta-gradient bg-clip-text text-transparent">10K+</div>
+                    <div class="text-gray-500">متابعين</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold insta-gradient bg-clip-text text-transparent">500+</div>
+                    <div class="text-gray-500">منشور</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold insta-gradient bg-clip-text text-transparent">5K+</div>
+                    <div class="text-gray-500">إعجاب</div>
+                </div>
+            </div>
+            
+            <!-- زر الملف الشخصي -->
+            <a href="https://instagram.com/username" target="_blank" class="inline-block insta-gradient text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all mb-12">
+                <i class="fab fa-instagram mr-2"></i> تابعني على إنستغرام
+            </a>
+            
+            <!-- نماذج من المحتوى -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                <div class="content-card rounded-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                         alt="مثال محتوى" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div class="content-card rounded-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1611162616475-46592b32151b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                         alt="مثال محتوى" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div class="content-card rounded-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                         alt="مثال محتوى" 
+                         class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التعاون -->
+    <section class="py-16 px-6 bg-white">
+        <div class="container mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-elegant text-dark mb-6">فرص التعاون</h2>
+            <p class="text-gray-600 mb-8">
+                أنا متاح للتعاون في المشاريع التالية:
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-right">
+                <div class="content-card bg-gray-50 p-6 rounded-lg">
+                    <div class="text-instagram text-2xl mb-3">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">العروض الترويجية</h3>
+                    <p class="text-gray-600">ترويج المنتجات والخدمات</p>
+                </div>
+                <div class="content-card bg-gray-50 p-6 rounded-lg">
+                    <div class="text-instagram text-2xl mb-3">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">جلسات التصوير</h3>
+                    <p class="text-gray-600">إنشاء محتوى احترافي</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section id="contact" class="py-16 px-6 bg-gray-50">
+        <div class="container mx-auto max-w-md text-center">
+            <h2 class="text-3xl font-elegant text-dark mb-8">تواصل معي</h2>
+            
+            <div class="flex justify-center space-x-4 space-x-reverse mb-8">
+                <a href="https://wa.me/966501234567" class="social-icon bg-green-500 text-white">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://instagram.com/username" class="social-icon insta-gradient text-white">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:email@example.com" class="social-icon bg-gray-700 text-white">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            
+            <p class="text-gray-600 mb-2">
+                للتعاون أو الاستفسارات:
+            </p>
+            <a href="tel:+966501234567" class="text-instagram font-medium">+966 50 123 4567</a>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="py-6 text-center bg-dark text-white">
+        <p class="text-sm">
+            © 2023 جميع الحقوق محفوظة لـ <span class="font-elegant">إسمك</span>
+        </p>
+    </footer>
+
+    <script>
+        // تأثير التمرير السلس
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

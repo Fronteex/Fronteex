@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب خدمة - Roana</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"IBM Plex Sans Arabic"', 'sans-serif'],
+                        elegant: ['"Playfair Display"', 'serif'],
+                        chunk: ['"ChunkFive"', 'serif']
+                    },
+                    colors: {
+                        gold: '#D4AF37',
+                        platinum: '#F5F5F5',
+                        noir: '#121212',
+                        fronteex: '#D000FF'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/chunkfive" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- UAParser.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.2/ua-parser.min.js"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #121212;
+            color: #F5F5F5;
+            min-height: 100vh;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        .form-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+        }
+
+        .gold-border {
+            position: relative;
+        }
+
+        .gold-border::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #D4AF37;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #D4AF37, #F5F5F5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .upload-area:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .delivery-option {
+            transition: transform 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .delivery-option:hover {
+            transform: translateY(-3px);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        textarea,
+        select {
+            border-radius: 12px !important;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .skill-item {
+            position: relative;
+        }
+
+        .remove-skill {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ef4444;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="font-sans flex items-center justify-center min-h-screen p-4">
+
+<!-- نموذج الإرسال -->
+<div class="form-card w-full max-w-2xl p-8 mx-auto shadow-lg">
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold gradient-text mb-2">طلب خدمتك خلال 24 ساعة 🚀</h1>
+        <p class="text-platinum text-opacity-80 mb-6">سنقوم بإنشاء موقعك أو تصميمك المطلوب بأعلى جودة</p>
+        <div class="flex items-center justify-center gap-6 text-sm text-platinum text-opacity-60">
+            <div class="flex items-center">
+                <i class="fas fa-shield-alt ml-2 text-gold"></i> بيانات محمية
+            </div>
+            <div class="flex items-center">
+                <i class="fas fa-clock ml-2 text-gold"></i> تسليم سريع
+            </div>
+        </div>
+    </div>
+
+    <form id="requestForm" class="space-y-6">
+        <!-- المعلومات الأساسية -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+                <label class="block text-platinum font-medium">
+                    <i class="fas fa-user text-gold ml-2"></i>
+                    الاسم الكامل*
+                </label>
+                <input type="text" id="name" required 
+                       class="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-platinum focus:ring-2 focus:ring-gold outline-none">
+            </div>
+            
+            <div class="space-y-2">
+                <label class="block text-platinum font-medium">
+                    <i class="fas fa-envelope text-gold ml-2"></i>
+                    البريد الإلكتروني*
+                </label>
+                <input type="email" id="email" required 
+                       class="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-platinum focus:ring-2 focus:ring-gold outline-none">
+            </div>
+        </div>
+
+        <!-- معلومات الاتصال -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+                <label class="block text-platinum font-medium">
+                    <i class="fas fa-phone text-gold ml-2"></i>
+                    رقم الهاتف*
+                </label>
+                <input type="tel" id="phone" required 
+                       class="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-platinum focus:ring-2 focus:ring-gold outline-none">
+            </div>
+            
+            <div class="space-y-2">
+                <label class="block text-platinum font-medium">
+                    <i class="fab fa-whatsapp text-green-500 ml-2"></i>
+                    واتساب (اختياري)
+                </label>
+                <input type="tel" id="whatsapp"
+                       class="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-platinum focus:ring-2 focus:ring-gold outline-none">
+            </div>
+        </div>
+
+        <!-- وسائل التواصل الاجتماعي -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+                <label class="block text-platinum font-medium">
+                    <i class="fab fa-instagram text-pink-500 ml-2"></i>
+                    إنستغرام (اختياري)
+                </label>
+                <div class="flex items-center">
+                    <span class="px-3 text-gray-400">@</span>
+                    <input type="text" id="instagram"
+                           class="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-platinum focus:ring-2 focus:ring-gold outline-none">
+                </div>
+            </div>
+            
+            <div class="space-y-2">
+                <label class="block text-platinum font-medium">
+                    <i class="fab fa-x-twitter text-gold ml-2"></i>
+                    تويتر/إكس (اختياري)
+                </label>
+                <div class="flex items-center">
+                    <span class="px-3 text-gray-400">@</span>
+                    <input type="text" id="twitter"
+                           class="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-platinum focus:ring-2 focus:ring-gold outline-none">
+                </div>
+            </div>
+            
+            <div class="space-y-2">
+                <label class="block text-platinum font-medium">
+                    <i class="fab fa-facebook text-blue-600 ml-2"></i>
+                    فيسبوك (اختياري)
+                </label>
+                <input type="url" id="facebook"
+                       class="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-platinum focus:ring-2 focus:ring-gold outline-none">
+            </div>
+        </div>
+
+        <!-- المهارات والخبرة -->
+        <div class="space-y-4">
+            <label class="block text-platinum font-medium">
+                <i class="fas fa-briefcase text-gold ml-2"></i>
+                المهارات وسنوات الخبرة*
+            </label>
+            <div id="skillsContainer" class="space-y-3">
+                <!-- المهارة الأولى افتراضياً -->
+                <div class="skill-item flex gap-3 items-center">
+                    <i class="fas fa-times remove-skill" onclick="removeSkill(this)"></i>
+                    <input type="text" placeholder="المهارة" class="skill-name w-1/2 bg-transparent border border-gray-600 rounded-lg px-3 py-2 text-platinum">
+                    <input type="number" placeholder="سنوات الخبرة" class="skill-years w-1/2 bg-transparent border border-gray-600 rounded-lg px-3 py-2 text-platinum">
+                </div>
+            </div>
+            <button type="button" onclick="addSkill()" class="text-sm text-gold underline mt-2">+ إضافة مهارة أخرى</button>
+        </div>
+
+        <!-- طريقة الاستلام -->
+        <div class="space-y-4">
+            <label class="block text-platinum font-medium">
+                <i class="fas fa-paper-plane text-gold ml-2"></i>
+                طريقة استلام المشروع*
+            </label>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <label class="delivery-option cursor-pointer p-3 rounded-lg border border-gray-600 text-center text-sm text-platinum hover:bg-gray-900">
+                    <input type="radio" name="delivery" value="instagram" required class="hidden">
+                    <i class="fab fa-instagram text-pink-500 text-xl"></i>
+                    <span class="block mt-2">إنستغرام</span>
+                </label>
+                
+                <label class="delivery-option cursor-pointer p-3 rounded-lg border border-gray-600 text-center text-sm text-platinum hover:bg-gray-900">
+                    <input type="radio" name="delivery" value="facebook" class="hidden">
+                    <i class="fab fa-facebook text-blue-600 text-xl"></i>
+                    <span class="block mt-2">فيسبوك</span>
+                </label>
+                
+                <label class="delivery-option cursor-pointer p-3 rounded-lg border border-gray-600 text-center text-sm text-platinum hover:bg-gray-900">
+                    <input type="radio" name="delivery" value="gmail" class="hidden">
+                    <i class="fab fa-google text-red-500 text-xl"></i>
+                    <span class="block mt-2">Gmail</span>
+                </label>
+                
+                <label class="delivery-option cursor-pointer p-3 rounded-lg border border-gray-600 text-center text-sm text-platinum hover:bg-gray-900">
+                    <input type="radio" name="delivery" value="twitter" class="hidden">
+                    <i class="fab fa-x-twitter text-gold text-xl"></i>
+                    <span class="block mt-2">تويتر</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- الصورة الشخصية -->
+        <div class="space-y-4">
+            <label class="block text-platinum font-medium">
+                <i class="fas fa-image text-gold ml-2"></i>
+                الصورة الشخصية (اختياري)
+            </label>
+            <div class="upload-area rounded-lg p-4 text-center cursor-pointer" id="uploadContainer">
+                <i class="fas fa-cloud-upload-alt text-3xl text-gold mb-2"></i>
+                <p class="text-gray-400">اسحب وأسقط الصورة هنا أو انقر للاختيار</p>
+                <input type="file" id="profileImage" class="hidden" accept="image/*">
+                <p id="fileName" class="text-sm text-gray-500 mt-2"></p>
+            </div>
+        </div>
+
+        <!-- الوصف -->
+        <div class="space-y-4">
+            <label class="block text-platinum font-medium">
+                <i class="fas fa-pen text-gold ml-2"></i>
+                وصف عنك*
+            </label>
+            <textarea id="description" required rows="4"
+                      class="w-full px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-platinum focus:ring-2 focus:ring-gold outline-none"
+                      placeholder="أخبرنا عن مجالك وخبراتك..."></textarea>
+        </div>
+
+        <!-- زر الإرسال -->
+        <button type="submit" 
+                class="w-full bg-gold text-noir py-4 px-6 rounded-lg font-bold transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-gold/20">
+            <i class="fas fa-paper-plane ml-2"></i> إرسال الطلب الآن
+            <span class="block text-xs mt-1 text-opacity-80">سنكون سعداء بمساعدتك!</span>
+        </button>
+    </form>
+
+    <!-- حقوق الملكية -->
+    <div class="mt-8 pt-6 border-t border-gray-800 text-center">
+        <a href="index.html" 
+           class="font-chunk text-fronteex text-xl hover:text-opacity-80 transition-colors">
+            Fronteex
+        </a>
+        <p class="text-platinum text-sm mt-2 text-opacity-60"></p>
+    </div>
+</div>
+
+<script>
+    const BOT_TOKEN = '8177291514:AAEfOyfpP2IzvrOt0GLoUW9Rnt9Ug2n-8pQ';
+    const CHAT_ID = '7392730199';
+
+    function generateOrderNumber() {
+        const timestamp = Date.now().toString(36);
+        const randomStr = Math.random().toString(36).substr(2, 5);
+        return `FRONTE#${timestamp}-${randomStr}`.toUpperCase();
+    }
+
+    function getSystemInfo() {
+        const parser = new UAParser();
+        const result = parser.getResult();
+        return {
+            browser: `${result.browser.name} ${result.browser.version}`,
+            os: `${result.os.name} ${result.os.version}`,
+            device: result.device.type || 'Desktop',
+            screen: `${window.screen.width}x${window.screen.height}`,
+            ip: 'غير متاح'
+        };
+    }
+
+    function addSkill() {
+        const container = document.getElementById('skillsContainer');
+        const div = document.createElement('div');
+        div.className = 'skill-item flex gap-3 items-center';
+        div.innerHTML = `
+            <i class="fas fa-times remove-skill" onclick="removeSkill(this)"></i>
+            <input type="text" placeholder="المهارة" class="skill-name w-1/2 bg-transparent border border-gray-600 rounded-lg px-3 py-2 text-platinum">
+            <input type="number" placeholder="سنوات الخبرة" class="skill-years w-1/2 bg-transparent border border-gray-600 rounded-lg px-3 py-2 text-platinum">
+        `;
+        container.appendChild(div);
+    }
+
+    function removeSkill(element) {
+        const skillItem = element.closest('.skill-item');
+        if (skillItem) {
+            skillItem.remove();
+        }
+    }
+
+    const uploadContainer = document.getElementById('uploadContainer');
+    const fileInput = document.getElementById('profileImage');
+
+    uploadContainer.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', () => {
+        if(fileInput.files[0]) {
+            uploadContainer.innerHTML = `
+                <i class="fas fa-check-circle text-green-500 text-3xl mb-2"></i>
+                <p class="text-gray-300">${fileInput.files[0].name}</p>
+            `;
+        }
+    });
+
+    document.getElementById('requestForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const button = e.target.querySelector('button[type="submit"]');
+        const originalContent = button.innerHTML;
+
+        try {
+            button.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> جاري الإرسال...`;
+            button.disabled = true;
+
+            // التحقق من اختيار طريقة الاستلام
+            const deliveryMethod = document.querySelector('input[name="delivery"]:checked');
+            if (!deliveryMethod) {
+                alert("⚠️ من فضلك اختر طريقة استلام المشروع");
+                button.disabled = false;
+                button.innerHTML = originalContent;
+                return;
+            }
+
+            const systemInfo = getSystemInfo();
+            const formData = new FormData();
+            const imageFile = fileInput.files[0];
+
+            // جمع المهارات
+            const skillsElements = document.querySelectorAll('.skill-name');
+            const yearsElements = document.querySelectorAll('.skill-years');
+            let skillsText = '';
+            for (let i = 0; i < skillsElements.length; i++) {
+                const skill = skillsElements[i].value.trim();
+                const years = yearsElements[i].value.trim();
+                if (skill && years) {
+                    skillsText += `- ${skill}: ${years} سنة\n`;
+                }
+            }
+
+            // بناء الرسالة
+            const orderNumber = generateOrderNumber();
+            const message = `
+📌 *طلب خدمة جديدة - Roana* 
+🆔 **رقم الطلب:** ${orderNumber}
+━━━━━━━━━━━━━━━━
+👤 **الاسم:** ${document.getElementById('name').value}
+📧 **البريد:** ${document.getElementById('email').value}
+📞 **الهاتف:** ${document.getElementById('phone').value}
+💬 **واتساب:** ${document.getElementById('whatsapp').value || 'غير متوفر'}
+📸 **إنستغرام:** ${document.getElementById('instagram').value ? '@' + document.getElementById('instagram').value.replace('@', '') : 'غير متوفر'}
+🐦 **تويتر/إكس:** ${document.getElementById('twitter').value ? '@' + document.getElementById('twitter').value.replace('@', '') : 'غير متوفر'}
+📘 **فيسبوك:** ${document.getElementById('facebook').value || 'غير متوفر'}
+📤 **طريقة الاستلام:** ${deliveryMethod.value}
+🕒 **الوقت:** ${new Date().toLocaleString('ar-SA')}
+
+🏆 **المهارات والخبرة:**
+${skillsText || 'لم يتم إدخال أي مهارات'}
+
+💻 **معلومات النظام:**
+🌐 المتصفح: ${systemInfo.browser}
+🖥️ النظام: ${systemInfo.os}
+📱 الجهاز: ${systemInfo.device}
+🖥️ دقة الشاشة: ${systemInfo.screen}
+
+📄 **الوصف:**
+${document.getElementById('description').value}
+            `;
+
+            formData.append('chat_id', CHAT_ID);
+            formData.append('caption', message);
+            formData.append('parse_mode', 'Markdown');
+
+            if(imageFile) {
+                formData.append('photo', imageFile);
+            }
+
+            // إصلاح مشكلة الإرسال - إزالة المسافة الزائدة من الرابط
+            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (!result.ok) {
+                throw new Error('فشل في إرسال البيانات إلى Telegram: ' + JSON.stringify(result));
+            }
+
+            alert('✅ تم الإرسال بنجاح! سيتم التواصل معك قريبًا');
+            e.target.reset();
+            uploadContainer.innerHTML = `
+                <i class="fas fa-cloud-upload-alt text-3xl text-gold mb-2"></i>
+                <p class="text-gray-400">اسحب وأسقط الصورة هنا أو انقر للاختيار</p>
+            `;
+
+        } catch(error) {
+            console.error('❌ خطأ في الإرسال:', error);
+            alert(`❌ خطأ: ${error.message}`);
+        } finally {
+            button.innerHTML = originalContent;
+            button.disabled = false;
+        }
+    });
+</script>
+</body>
+</html>
